@@ -82,7 +82,8 @@
       if (this.config.root2) {
         return this.copy({
           src: this.config.root2,
-          dest: this.path.join(this.config.path, 'www')
+          dest: this.path.join(this.config.path, 'www'),
+          excludes: this.config.excludes2
         }, function(err) {
           if (err) {
             _this.warn(err);
