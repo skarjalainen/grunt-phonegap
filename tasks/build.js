@@ -16,8 +16,6 @@
       this.buildPlatform = __bind(this.buildPlatform, this);
       this.addPlugin = __bind(this.addPlugin, this);
       this.copyConfig = __bind(this.copyConfig, this);
-      this.cloneSrc2 = __bind(this.cloneSrc2, this);
-      this.cloneSrc1 = __bind(this.cloneSrc1, this);
       this.cloneRoot = __bind(this.cloneRoot, this);
       this.cloneCordova = __bind(this.cloneCordova, this);
       this.file = this.grunt.file;
@@ -75,46 +73,6 @@
           return fn(err);
         }
       });
-    };
-
-    Build.prototype.cloneSrc1 = function(fn) {
-      var _this = this;
-      if (this.config.copysrc1) {
-        return this.copy({
-          src: this.config.copysrc1,
-          dest: this.path.join(this.config.path, this.config.copydest1),
-          excludes: this.config.excludes1
-        }, function(err) {
-          if (err) {
-            _this.warn(err);
-          }
-          if (fn) {
-            return fn(err);
-          }
-        });
-      } else {
-        return true;
-      }
-    };
-
-    Build.prototype.cloneSrc2 = function(fn) {
-      var _this = this;
-      if (this.config.copysrc2) {
-        return this.copy({
-          src: this.config.copysrc2,
-          dest: this.path.join(this.config.path, this.config.copydest2),
-          excludes: this.config.excludes2
-        }, function(err) {
-          if (err) {
-            _this.warn(err);
-          }
-          if (fn) {
-            return fn(err);
-          }
-        });
-      } else {
-        return true;
-      }
     };
 
     Build.prototype.copyConfig = function(fn) {

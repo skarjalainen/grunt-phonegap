@@ -8,8 +8,6 @@
     async.eachSeries = require('async').eachSeries;
     defaults = {
       root: 'www',
-      root2: '',
-      root3: '',
       config: 'www/config.xml',
       path: 'build',
       cordova: '.cordova',
@@ -23,7 +21,7 @@
       config = _.defaults(grunt.config.get('phonegap.config'), defaults);
       done = this.async();
       build = new Build(grunt, config).clean().buildTree();
-      return async.series([build.cloneRoot, build.cloneSrc1, build.cloneSrc2, build.cloneCordova, build.copyConfig], function() {
+      return async.series([build.cloneRoot, build.cloneCordova, build.copyConfig], function() {
         return async.eachSeries(config.plugins, build.addPlugin, function(err) {
           return async.eachSeries(config.platforms, build.buildPlatform, function(err) {
             return done();
