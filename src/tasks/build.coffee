@@ -33,17 +33,17 @@ class module.exports.Build
       @warn(err) if err
       fn(err) if fn
 
-  cloneRoot2: (fn) =>
-    if @config.root2
-      @copy src: @config.root2, dest: @path.join(@config.path, 'www'), excludes: @config.excludes2, (err) =>
+  cloneSrc1: (fn) =>
+    if @config.copysrc1
+      @copy src: @config.copysrc1, dest: @path.join(@config.path, @config.copydest1), excludes: @config.excludes1, (err) =>
         @warn(err) if err
         fn(err) if fn
     else
       true
 
-  cloneRoot3: (fn) =>
-    if @config.root3
-      @copy src: @config.root3, dest: @path.join(@config.path, 'www'), (err) =>
+  cloneSrc2: (fn) =>
+    if @config.copysrc1
+      @copy src: @config.copysrc2, dest: @path.join(@config.path, @config.copydest2), excludes: @config.excludes2, (err) =>
         @warn(err) if err
         fn(err) if fn
     else
