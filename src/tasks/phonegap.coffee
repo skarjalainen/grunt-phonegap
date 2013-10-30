@@ -28,8 +28,8 @@ module.exports = (grunt) ->
 
     async.series [
       build.cloneRoot,
-      build.cloneRoot2,
-      build.cloneRoot3,
+      build.cloneSrc1,
+      build.cloneSrc2,
       build.cloneCordova,
       build.copyConfig
     ], ->

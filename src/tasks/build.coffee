@@ -42,7 +42,7 @@ class module.exports.Build
       true
 
   cloneSrc2: (fn) =>
-    if @config.copysrc1
+    if @config.copysrc2
       @copy src: @config.copysrc2, dest: @path.join(@config.path, @config.copydest2), excludes: @config.excludes2, (err) =>
         @warn(err) if err
         fn(err) if fn

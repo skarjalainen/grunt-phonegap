@@ -99,7 +99,7 @@
 
     Build.prototype.cloneSrc2 = function(fn) {
       var _this = this;
-      if (this.config.copysrc1) {
+      if (this.config.copysrc2) {
         return this.copy({
           src: this.config.copysrc2,
           dest: this.path.join(this.config.path, this.config.copydest2),
