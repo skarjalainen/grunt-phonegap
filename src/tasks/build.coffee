@@ -33,6 +33,22 @@ class module.exports.Build
       @warn(err) if err
       fn(err) if fn
 
+  cloneRoot2: (fn) =>
+    if this.config.root2
+      @copy src: @config.root2, dest: @path.join(@config.path, 'www'), (err) =>
+        @warn(err) if err
+        fn(err) if fn
+    else
+      true
+
+  cloneRoot3: (fn) =>
+    if this.config.root3
+      @copy src: @config.root3, dest: @path.join(@config.path, 'www'), (err) =>
+        @warn(err) if err
+        fn(err) if fn
+    else
+      true
+
   copyConfig: (fn) =>
     @cp @config.config, @path.join(@config.path, 'www', 'config.xml'), -> fn()
 

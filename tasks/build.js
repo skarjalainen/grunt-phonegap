@@ -16,6 +16,8 @@
       this.buildPlatform = __bind(this.buildPlatform, this);
       this.addPlugin = __bind(this.addPlugin, this);
       this.copyConfig = __bind(this.copyConfig, this);
+      this.cloneRoot3 = __bind(this.cloneRoot3, this);
+      this.cloneRoot2 = __bind(this.cloneRoot2, this);
       this.cloneRoot = __bind(this.cloneRoot, this);
       this.cloneCordova = __bind(this.cloneCordova, this);
       this.file = this.grunt.file;
@@ -73,6 +75,44 @@
           return fn(err);
         }
       });
+    };
+
+    Build.prototype.cloneRoot2 = function(fn) {
+      var _this = this;
+      if (this.config.root2) {
+        return this.copy({
+          src: this.config.root2,
+          dest: this.path.join(this.config.path, 'www')
+        }, function(err) {
+          if (err) {
+            _this.warn(err);
+          }
+          if (fn) {
+            return fn(err);
+          }
+        });
+      } else {
+        return true;
+      }
+    };
+
+    Build.prototype.cloneRoot3 = function(fn) {
+      var _this = this;
+      if (this.config.root3) {
+        return this.copy({
+          src: this.config.root3,
+          dest: this.path.join(this.config.path, 'www')
+        }, function(err) {
+          if (err) {
+            _this.warn(err);
+          }
+          if (fn) {
+            return fn(err);
+          }
+        });
+      } else {
+        return true;
+      }
     };
 
     Build.prototype.copyConfig = function(fn) {
