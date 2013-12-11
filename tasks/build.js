@@ -14,6 +14,7 @@
       this.grunt = grunt;
       this.config = config;
       this.buildPlatform = __bind(this.buildPlatform, this);
+      this.installPlatform = __bind(this.installPlatform, this);
       this.addPlugin = __bind(this.addPlugin, this);
       this.copyConfig = __bind(this.copyConfig, this);
       this.cloneRoot = __bind(this.cloneRoot, this);
@@ -99,6 +100,28 @@
         return _this.log.write(out);
       });
       return proc.stderr.on('data', function(err) {
+        return _this.fatal(err);
+      });
+    };
+
+    Build.prototype.installPlatform = function(platform, fn) {
+      var childProcess, cmd,
+        _this = this;
+      cmd = "cordova platform add " + platform + " " + (this._setVerbosity());
+      childProcess = this.exec(cmd, {
+        cwd: this.config.path
+      }, function(err, stdout, stderr) {
+        if (err) {
+          _this.fatal(err);
+        }
+        if (fn) {
+          return fn(err);
+        }
+      });
+      childProcess.stdout.on('data', function(out) {
+        return _this.log.write(out);
+      });
+      return childProcess.stderr.on('data', function(err) {
         return _this.fatal(err);
       });
     };

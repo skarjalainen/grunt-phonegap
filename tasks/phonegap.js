@@ -23,7 +23,9 @@
       build = new Build(grunt, config).clean().buildTree();
       return async.series([build.cloneRoot, build.cloneCordova, build.copyConfig], function() {
         return async.eachSeries(config.plugins, build.addPlugin, function(err) {
-          return done();
+          return async.eachSeries(config.platforms, build.installPlatform, function(err) {
+            return done();
+          });
         });
       });
     });

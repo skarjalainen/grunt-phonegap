@@ -45,6 +45,15 @@ class module.exports.Build
     proc.stdout.on 'data', (out) => @log.write(out)
     proc.stderr.on 'data', (err) => @fatal(err)
 
+  installPlatform: (platform, fn) =>
+    cmd = "cordova platform add #{platform} #{@_setVerbosity()}"
+    childProcess = @exec cmd, cwd: @config.path, (err, stdout, stderr) =>
+      @fatal err if err
+      fn(err) if fn
+
+    childProcess.stdout.on 'data', (out) => @log.write(out)
+    childProcess.stderr.on 'data', (err) => @fatal(err)
+
   buildPlatform: (platform, fn) =>
     cmd = "phonegap local build #{platform} #{@_setVerbosity()}"
     childProcess = @exec cmd, cwd: @config.path, (err, stdout, stderr) =>

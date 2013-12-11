@@ -30,7 +30,8 @@ module.exports = (grunt) ->
       build.copyConfig
     ], ->
       async.eachSeries config.plugins, build.addPlugin, (err) ->
-        done()
+        async.eachSeries config.platforms, build.installPlatform, (err) ->
+          done()
 
   grunt.registerTask 'phonegap:build', 'Build as a Phonegap application', ->
     # Set default options
