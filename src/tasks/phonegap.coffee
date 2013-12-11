@@ -16,6 +16,22 @@ module.exports = (grunt) ->
     platforms: []
     verbose: false
 
+  grunt.registerTask 'phonegap:init', 'Init as a Phonegap application', ->
+    # Set default options
+    config = _.defaults grunt.config.get('phonegap.config'), defaults
+
+
+    done = @async()
+    build = new Build(grunt, config).clean().buildTree()
+
+    async.series [
+      build.cloneRoot,
+      build.cloneCordova,
+      build.copyConfig
+    ], ->
+      async.eachSeries config.plugins, build.addPlugin, (err) ->
+        done()
+
   grunt.registerTask 'phonegap:build', 'Build as a Phonegap application', ->
     # Set default options
     config = _.defaults grunt.config.get('phonegap.config'), defaults

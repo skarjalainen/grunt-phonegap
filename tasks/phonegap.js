@@ -16,6 +16,17 @@
       platforms: [],
       verbose: false
     };
+    grunt.registerTask('phonegap:init', 'Init as a Phonegap application', function() {
+      var build, config, done;
+      config = _.defaults(grunt.config.get('phonegap.config'), defaults);
+      done = this.async();
+      build = new Build(grunt, config).clean().buildTree();
+      return async.series([build.cloneRoot, build.cloneCordova, build.copyConfig], function() {
+        return async.eachSeries(config.plugins, build.addPlugin, function(err) {
+          return done();
+        });
+      });
+    });
     grunt.registerTask('phonegap:build', 'Build as a Phonegap application', function() {
       var build, config, done;
       config = _.defaults(grunt.config.get('phonegap.config'), defaults);
