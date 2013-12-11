@@ -1,8 +1,8 @@
 {
-  "name": "grunt-phonegap-forkedby-skarjalainen",
+  "name": "grunt-phonegap",
   "description": "Local build tasks for Phonegap applications",
-  "version": "0.3.0-fork1",
-  "homepage": "https://github.com/skarjalainen/grunt-phonegap",
+  "version": "0.3.0",
+  "homepage": "https://github.com/logankoester/grunt-phonegap",
   "author": {
     "name": "Logan Koester",
     "email": "logan@logankoester.com",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/skarjalainen/grunt-phonegap.git"
+    "url": "git://github.com/logankoester/grunt-phonegap.git"
   },
   "bugs": {
-    "url": "https://github.com/skarjalainen/grunt-phonegap/issues"
+    "url": "https://github.com/logankoester/grunt-phonegap/issues"
   },
   "licenses": [
     {
